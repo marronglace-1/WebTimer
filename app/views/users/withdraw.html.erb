@@ -1,0 +1,18 @@
+<% content_for :css do %>
+    <%= stylesheet_link_tag "show" %>
+<% end %>
+<div class="main user-show">
+    <div class="main-wrapper">
+        <div class="user-tabs">
+            <div class="user">
+                <h2 class="title user-title">ユーザー情報</h2>
+                <img src="<%= "/images/#{@user.image_name}" %>">
+                <h2 class="name"><%= @user.name %></h2>
+                <p><%= @user.email %></p>
+                <%= link_to("/users/users_destroy", {method: "post"}) do %>
+                    <input type="submit" value="退会する" class="content-btn">
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<% content_for :css do %>
+    <%= stylesheet_link_tag "show" %>
+<% end %>
+<div class="main user-show">
+    <div class="main-wrapper">
+        <div class="user-tabs">
+            <div class="user">
+                <h2 class="title user-title">ユーザー情報</h2>
+                <img src="<%= "/images/#{@userd.image_name}" %>">
+                <h2 class="name"><%= @userd.name %></h2>
+                <p><%= @userd.email %></p>
+                <%= link_to("/users/withdraw") do %>
+                    <input type="submit" value="退会画面へ" class="mini-btn">
+                <% end %>
+                <%= link_to("/users/content_show") do %>
+                    <input type="submit" value="学習内容編集画面へ" class="mini-btn">
+                <% end %>
+            </div>
+            <div class="user-data">
+                <h2 class="title user-edit-title">ユーザー情報編集</h2>
+                <div class="error-form">
+                    <% @user.errors.full_messages.each do |message| %>
+                        <h3><%= message %></h3>
+                    <% end %>
+                </div>
+                <%= form_tag("/users/users_update") do %>
+                    <div class="subtitle">
+                        <label>name</label>
+                        <input type="text" name="name" value="<%= @user.name %>" class="user-edit-form">
+                    </div>
+                    <div class="subtitle">
+                        <label>email</label>
+                        <input type="text" name="email" value="<%= @user.email %>" class="user-edit-form">
+                    </div>
+                    <div class="subtitle">
+                        <label>password</label>
+                        <input type="password" name="password" class="user-edit-form">
+                    </div>
+                    <div>
+                        <input type="submit" value="編集" class="user-edit-btn">
+                    </div>
+                <% end %>
+            </div>
+            
+        </div>
+    </div>
+</div>
